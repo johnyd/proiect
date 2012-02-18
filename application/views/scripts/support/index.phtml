@@ -1,0 +1,22 @@
+	<body>
+	<?php echo $this->action('index', 'login'); ?>
+	<?php echo $this->action('index', 'menu'); ?>
+
+	<tr>
+		<td colspan="2"><?php echo $this->message; ?></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			Current messages:<br />
+			<?php 
+				foreach($this->feedbacks AS $fb)
+					echo "I: " . $fb["mpfeedback"] . " - R: " . $fb["mpanswer"] . " - Status: " . $fb["mpstatus"] . "<br />";
+			?>
+		</td>
+	</tr>
+	<tr>
+		<td>Your message:</td><td><?php echo $this->form; ?></td>
+	</tr>
+	
+	<?php echo $this->action('footer','index'); ?>
+</html> 
