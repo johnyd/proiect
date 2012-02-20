@@ -1,5 +1,12 @@
 <table class="logotable" align="center">
-		<tr>
+	<tr><td>
+	<?php if($this->logged == 0) {
+	 		echo $this->form; 
+		} elseif($this->logged == 1) { 
+		echo "<table class='logintable' align='right' cellspacing=0><tr><td>LOGOUT HERE(NYI)</td></tr></table>";
+	}?>
+	</td></tr>
+	<!-- 	<tr>
 			<td>
 			<table class="logintable" align="right" cellspacing="0">
 			<form name="SubmitLogin" action="login.php" onsubmit="return validateForm()" method="post">
@@ -20,4 +27,5 @@
 			</table>
 			</td>
 		</tr>
+		 -->
 </table>
