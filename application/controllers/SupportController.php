@@ -13,76 +13,100 @@ class SupportController extends Zend_Controller_Action
     	
     }
     
-    public function getForm()
+    public function getForm() //create form and elements
     {    	 
     	$form = new Zend_Form;
-    	$form->setAction($this->config . 'public/support/submit')
+    	$form->setAction($this->config . 'public/support/index')
     	->setMethod('post');
     	$form->setAttrib('id', 'support');
     	 
     	$message = new Zend_Form_Element_Textarea('message');
     	$message->setRequired(true);
+    	$message->setDecorators(array(
+                   'ViewHelper',
+                   'Description',
+                   'Errors',
+                   array(array('data'=>'HtmlTag'), array('tag' => 'td')),
+                   array('Label', array('tag' => 'td')),
+                   array(array('row'=>'HtmlTag'),array('tag'=>'tr'))
+           ));
+    	$message->setAttribs(array(
+    				'rows' 	=>	10,
+    				'cols'	=>	75,
+    			));
+    	$message->setLabel('Please send us your feedback:');
     	$form->addElement($message, 'message');
-    	 
-    	$submit = new Zend_Form_Element_Submit('submit');
-    	$form->addElement('submit', 'submit');
     	
-		$captchaImage = new Zend_Captcha_Image();
-		//$captchaImage->setStartImage('f:/server/zf/proiect/css/images/capcha2.png');
-		$captchaImage->setFont('../css/arial.ttf');
-		$captchaImage->setFontSize(30);
-		$captchaImage->setWordlen(4);
-		$captchaImage->setLineNoiseLevel(0);
-		$captchaImage->setDotNoiseLevel(0);
-		$captchaImage->setImgDir('../css/captcha/');
-		$captchaImage->setImgUrl('../css/captcha/');
-		$captchaImage->setName('captcha');
-		        
-		$captcha = new Zend_Form_Element_Captcha(
-		'captcha', array('captcha' => $captchaImage)
-		);
-		$form->addElement($captcha);
-    	    	
+    	$captchaImage = new Zend_Captcha_Image();
+    	$captchaImage->setHeight(60);
+    	$captchaImage->setWidth(100);
+    	$captchaImage->setFont('../css/arial.ttf');
+    	$captchaImage->setFontSize(25);
+    	$captchaImage->setWordlen(5);
+    	$captchaImage->setLineNoiseLevel(5);
+    	$captchaImage->setDotNoiseLevel(5);
+    	$captchaImage->setImgDir('../css/captcha/');
+    	$captchaImage->setImgUrl('../../css/captcha/');
+    	$captchaImage->setName('captcha');
+    	$captchaImage->setTimeout(300);
+    	$captchaImage->setExpiration(300);
+    	
+    	$captcha = new Zend_Form_Element_Captcha(
+    			'captcha', array('captcha' => $captchaImage)
+    	);
+    	$captcha->setDecorators(array(
+    			'Description',
+    			'Errors',
+    			array(array('data'=>'HtmlTag'), array('tag' => 'td')),
+    			array('Label', array('tag' => 'td')),
+    			array(array('row'=>'HtmlTag'),array('tag'=>'tr'))
+    	));
+    	$captcha->setLabel('Please enter text from image:');
+    	$form->addElement($captcha);
+    	
+    	$submit = new Zend_Form_Element_Submit('Send');
+    	$submit->setDecorators(array(
+               	'ViewHelper',
+               	'Description',
+    		   	array(array('data'=>'HtmlTag'), array('tag' => 'td')),
+    			array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
+       	));
+    	$form->addElement($submit, 'Send');
+    	
+    	$form->setDecorators(array(
+    			'FormElements',
+    			array(array('data'=>'HtmlTag'),array('tag'=>'table')),
+    			'Form'
+    	));
+    	
     	return $form;
     }
 
     public function indexAction()
     {
-        // action body
-        $params = $this->_request->getParams();
-        if($params['sent']) $message = "Your message has been sent <br />";
-        else if($params['error']) $message = $params['error'];
-        else $message = "";
-        
-        $this->view->assign('feedbacks',$this->db->fetchAll('SELECT * FROM mpfeedback'));
-        
-        $this->view->assign('message',$message);
-    	$this->view->assign('form',$this->getForm());
-    }
-    
-    public function submitAction()
-    {
-    	if (!$this->getRequest()->isPost()) {
-    		return $this->_forward('index');
-    	}
-    	$form = $this->getForm();
-    	if (!$form->isValid($_POST)) {
-    		$errors = $form->getMessages();
-    		$this->_forward('index','support',array(),array('sent' => false, 'error' => $errors["message"]["isEmpty"]));
-    	}
-    	else{
-	    	$values = $form->getValues();
-	    	$insertArr = array(
-	    				'idmpuser'		=>	1,
-	    				'mpfeedback'	=>	$values['message'],
-	    				'mpanswer'		=> null,
-	    				'mpstatus'		=> 0
-	    			);
-	    	$this->db->insert('mpfeedback',$insertArr);
-	    	$this->_forward('index','support',array(),array('sent' => true));
-    	}
+        // action body    
+
+        $form = $this->getForm();
+        if (!$this->getRequest()->isPost()) {
+        	$this->view->assign('form',$form);
+        }
+        else if (!$form->isValid($_POST)) {
+        	$this->view->assign('form',$form);
+        }
+        else{
+        	
+        	$values = $form->getValues();
+        	$insertArr = array(
+        			'idmpuser'		=>	1,
+        			//get logged user for idmpuser
+        			'mpfeedback'	=>	$values['message'],
+        			'mpanswer'		=> null,
+        			'mpstatus'		=> 0
+        	);
+        	$this->db->insert('mpfeedback',$insertArr);
+        	$this->view->assign('form',$form);
+        } 
     }
 
 
 }
-

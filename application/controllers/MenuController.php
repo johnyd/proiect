@@ -12,6 +12,7 @@ class MenuController extends Zend_Controller_Action
     {
         $config = Zend_Registry::get('globalPath');
         $this->view->assign('globalPath',$config);
+        $this->view->assign('globalProjectPath', Zend_Registry::get('globalProjectPath'));
     }
 
 

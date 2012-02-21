@@ -1,12 +1,63 @@
-h1.big{
-	font-size:150%;
-	color:#0000FF;
+.body{font-size:80%; background-image:url('images/bgi0001.png'); background-repeat:repeat-x-y;}
+
+.facebook{
+position:fixed; top:520px; right:1%;
+background:url('/images/followus/facebook.png') no-repeat top left;
+border: 1px solid transparent;
+height:64px; width:64px;
+}
+.facebook:hover {border:none;position:fixed; top:520px; right:2%;
+background:url('/images/followus/facebook.png') no-repeat top left;
+height:64px; width:64px;
 }
 
-body{
-font-size:80%;
-background-image:url('images/bgi0001.png');
-background-repeat:repeat-x-y;
+
+.twitter{position:fixed; top:600px; right:1%;border: 1px solid transparent;}
+.twitter:hover {position:fixed; top:600px; right:2%;border: 1px solid transparent;}
+.googleplus{position:fixed; top:680px; right:1%;}
+.googleplus:hover {position:fixed; top:680px; right:2%;}
+
+.logo{
+background-image:url('images/mplogo.png');
+top:0px;
+width:1920px;
+height:500px;
+}
+
+.milleniumplay{
+position:absolute;
+left:500px;
+top:50px;
+font-family:calibri;
+text-shadow:#04FE00 0px 3px 0, #ffff00 0 -3px 0;
+font-size:45px; font-weight:bold; color:#FF0000; 
+}
+
+.mainmenu{background-image:url('images/bgi0002.png');position:absolute;left:520px;top:350px;}
+
+.widget{
+position:fixed; bottom:-2px; left:-2px;
+background:url('images/widget.png') no-repeat top left;
+border: 1px solid transparent;
+width:200px; height:100px;
+font-size:130%;text-align:left;font-family:"arial";color:#00ff00;
+}
+.widget:hover{
+position:fixed; bottom:-1px; left:-1px;
+background:url('images/widgethover.png') no-repeat top left;
+border: 1px solid transparent;
+width:200px; height:100px;
+font-size:130%;text-align:left;font-family:"arial";color:#ffff00;
+}
+
+table.contentindex{
+background-image:url('images/bgrb.png');
+border:0px solid #aaaaaa;
+padding:0px 0px;-webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+width:1024px;
+height:1200px;
+border-radius:0px;
+-moz-border-radius:0px;
 }
 
 table.indextable{
@@ -30,15 +81,7 @@ background: linear-gradient(top,  #ffffff 1%,#ffffff 10%,#ff0087 100%); /* W3C *
 /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ff0087',GradientType=0 ); /* IE6-8 */
 }
 
-table.logotable{
-border:2px solid #aaaaaa;
-background-image:url('images/logobackground.png');
-padding:10px 10px;-webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-width:1024px;
-height:200px;
-border-radius:15px;
--moz-border-radius:15px;
-}
+
 
 table.logintable{
 border:0px solid #aaaaaa;
@@ -69,19 +112,9 @@ height:768px;
 border-radius:10px;
 -moz-border-radius:10px;
 }
-table.suport2{
-background-image:url('images/bgrb.png');
-border:0px solid #aaaaaa;
-padding:0px 0px;-webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-width:1024px;
-height:1200px;
-border-radius:0px;
--moz-border-radius:0px;
-}
 
-table.table0001{
-background-image:url('images/bgi0002.png');
-}
+
+
 table.table0002{
 background-image:url('images/bgi0003.png');
 }
@@ -96,7 +129,7 @@ border-radius:15px;
 }
 
 table.main{background-color:#C8DCF0;}
-table.menu{background-color:#C8DCF0;}
+
 table.window{background-color:#C8DCF0;}
 
 th.th1 {background-color:#bdcad8;}
@@ -112,15 +145,6 @@ th.th10 {background-color:#d1d3d4;}
 th.th11 {background-color:#C8DCF0;}
 th.th12{background-color:#4070aa;}
 
-
-h1 {font-size:175%;}
-h2 {font-size:150%;}
-h3 {font-size:125%;}
-h4 {font-size:100%;}
-h5 {font-size:87%;}
-h6 {font-size:75%;}
-
-h1.title {font-size:275%;font-family:"arial";color:#did3d4}
 p.menu {font-size:80%;text-align:center;font-family:"arial";color:#4070aa}
 p.login {font-size:90%;text-align:center;font-family:"arial";color:#ffffff}
 p.copyright {font-size:80%;text-align:center;font-family:"arial";color:#ffaaff;
@@ -130,36 +154,40 @@ text.login {font-size:100%;text-align:center;font-family:"arial";color:#ffffff;}
 text.menubar{font-size:130%;text-align:center;font-family:"arial";color:#ffffff;}
 
 a:hover {color:red;}
- .button {
-     border: none;
-     background: url('/buttons/buttonsignup1.png') no-repeat top left;
-     padding: 3px 8px;
-	 height: 31px;
-	 width: 143px;
- }
- .button:hover {
-     border: none;
-     background: url('/buttons/buttonsignup2.png') no-repeat top left;
-     padding: 2px 8px;
- }
+
+
+
+.button {
+    border: none;
+    background: url('images/buttons/buttonsignup1.png') no-repeat top left;
+    padding: 3px 8px;
+	height: 31px;
+	width: 143px;
+}
+.button:hover {
+    border: none;
+    background: url('images/buttons/buttonsignup2.png') no-repeat top left;
+    padding: 2px 8px;
+}
  
-  .buttonlogin {
-     border: none;
-     background: url('/buttons/buttonlogin1.png') no-repeat top left;
-     padding: 3px 8px;
-	 height: 31px;
-	 width: 90px;
- }
- .buttonlogin:hover {
-     border: none;
-     background: url('/buttons/buttonlogin2.png') no-repeat top left;
-     padding: 2px 8px;
- }
+.buttonlogin {
+    border: none;
+    background: url('images/buttons/buttonlogin1.png') no-repeat top left;
+    padding: 3px 8px;
+	height: 31px;
+	width: 90px;
+}
+.buttonlogin:hover {
+    border: none;
+    background: url('images/buttons/buttonlogin2.png') no-repeat top left;
+    padding: 2px 8px;
+}
+ 
 .image {
 	position:relative;
 	float:left; /* optional */
 	height: 31px;
-	 width: 50px;
+	width: 50px;
 }
 .image .text {
 	position:absolute;
@@ -177,3 +205,6 @@ a:hover {color:red;}
 	 width: 143px;
 	 background-size:100px;
  }
+ 
+ 
+ 
